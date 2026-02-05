@@ -17,6 +17,7 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
+      overflow: hidden;
     }
 
     .container {
@@ -26,6 +27,8 @@
       border-radius: 20px;
       padding: 40px 25px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 1;
     }
 
     button {
@@ -37,6 +40,7 @@
       background: #e63946;
       color: #fff;
       cursor: pointer;
+      transition: transform 0.2s;
     }
 
     button:hover {
@@ -55,6 +59,35 @@
     @keyframes fade {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Surpresa - efeito de entrada para o ingresso */
+    .reveal {
+      animation: revealEffect 1s ease forwards;
+    }
+
+    @keyframes revealEffect {
+      0% { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+      50% { transform: scale(1.2) rotate(10deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    /* Confete */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #f1c40f;
+      top: 0;
+      left: 50%;
+      pointer-events: none;
+      opacity: 0.8;
+      animation: confettiFall 3s linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
     }
   </style>
 </head>
@@ -88,27 +121,65 @@
     </div>
 
     <div class="step" id="step4">
-      <h2>🎸 Engenheiros do Hawaii 🎸</h2>
-      <p>
+      <p style="font-size: 1.3em; font-weight: bold;">
+        Você aceita viver um sonho comigo? 💫
+      </p>
+      <button onclick="nextStep(5)">Sim!</button>
+    </div>
+
+    <div class="step" id="step5">
+      <h2 class="reveal">🎸 Engenheiros do Hawaii 🎸</h2>
+      <p class="reveal">
         📅 <strong>31 de julho de 2026</strong><br><br>
         Dois ingressos.<br>
         Eu + você.<br>
         Nossa história tocando ao vivo.
       </p>
-      <p>Te amo ❤️</p>
+      <p class="reveal">Te amo ❤️</p>
     </div>
 
   </div>
+
+  <!-- Áudio da música -->
+  <audio id="song" src="bolero.mp3"></audio>
 
   <script>
     function nextStep(step) {
       document.querySelectorAll('.step').forEach(el => {
         el.classList.remove('active');
       });
-      document.getElementById('step' + step).classList.add('active');
+      const currentStep = document.getElementById('step' + step);
+      currentStep.classList.add('active');
+
+      // Se for o passo da revelação, gerar confetes e tocar música
+      if(step === 5) {
+        createConfetti(100);
+
+        const song = document.getElementById('song');
+        song.play().catch(() => {
+          console.log("Interação do usuário é necessária para reproduzir o áudio.");
+        });
+      }
+    }
+
+    function createConfetti(amount) {
+      for(let i = 0; i < amount; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.background = hsl(${Math.random() * 360}, 100%, 50%);
+        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+        confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
     }
   </script>
 
 </body>
 </html>
+
 
