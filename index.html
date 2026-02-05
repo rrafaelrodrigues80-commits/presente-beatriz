@@ -77,9 +77,7 @@
       position: fixed;
       width: 10px;
       height: 10px;
-      background: #f1c40f;
       top: 0;
-      left: 50%;
       pointer-events: none;
       opacity: 0.8;
       animation: confettiFall 3s linear infinite;
@@ -97,34 +95,23 @@
 
     <div class="step active" id="step1">
       <h1>Feliz aniversário, Beatriz 🎉❤️</h1>
-      <p>
-        Algumas coisas não precisam de explicação.<br>
-        Só precisam ser sentidas.
-      </p>
+      <p>Algumas coisas não precisam de explicação.<br>Só precisam ser sentidas.</p>
       <button onclick="nextStep(2)">Continuar</button>
     </div>
 
     <div class="step" id="step2">
-      <p>
-        Amar você é fácil.<br>
-        Difícil é explicar o quanto.
-      </p>
+      <p>Amar você é fácil.<br>Difícil é explicar o quanto.</p>
       <button onclick="nextStep(3)">Continuar</button>
     </div>
 
     <div class="step" id="step3">
-      <p>
-        Cada momento ao seu lado vira memória boa.<br>
-        Cada sorriso seu vira casa.
-      </p>
+      <p>Cada momento ao seu lado vira memória boa.<br>Cada sorriso seu vira casa.</p>
       <button onclick="nextStep(4)">Continuar</button>
     </div>
 
     <div class="step" id="step4">
-      <p style="font-size: 1.3em; font-weight: bold;">
-        Você aceita viver um sonho comigo? 💫
-      </p>
-      <button onclick="nextStep(5)">Sim!</button>
+      <p style="font-size: 1.3em; font-weight: bold;">Você aceita viver um sonho comigo? 💫</p>
+      <button onclick="revealTickets()">Sim!</button>
     </div>
 
     <div class="step" id="step5">
@@ -145,41 +132,41 @@
 
   <script>
     function nextStep(step) {
-      document.querySelectorAll('.step').forEach(el => {
-        el.classList.remove('active');
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+    }
+
+    function revealTickets() {
+      nextStep(5); // Mostra a etapa dos ingressos
+
+      // Toca a música (requer interação do usuário)
+      const song = document.getElementById('song');
+      song.play().catch(() => {
+        console.log("Áudio bloqueado até interação do usuário.");
       });
-      const currentStep = document.getElementById('step' + step);
-      currentStep.classList.add('active');
 
-      // Se for o passo da revelação, gerar confetes e tocar música
-      if(step === 5) {
-        createConfetti(100);
-
-        const song = document.getElementById('song');
-        song.play().catch(() => {
-          console.log("Interação do usuário é necessária para reproduzir o áudio.");
-        });
-      }
+      // Cria confetes
+      createConfetti(100);
     }
 
     function createConfetti(amount) {
-      for(let i = 0; i < amount; i++) {
+      for(let i=0; i<amount; i++){
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.background = hsl(${Math.random() * 360}, 100%, 50%);
-        confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
-        confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
+        confetti.style.background = hsl(${Math.random()*360}, 100%, 50%);
+        confetti.style.animationDuration = (2 + Math.random()*2) + 's';
+        confetti.style.width = confetti.style.height = (5 + Math.random()*10) + 'px';
         document.body.appendChild(confetti);
 
-        setTimeout(() => {
-          confetti.remove();
-        }, 3000);
+        setTimeout(()=> confetti.remove(), 3000);
       }
     }
   </script>
 
 </body>
 </html>
+
+
 
 
