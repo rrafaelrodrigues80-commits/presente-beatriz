@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversário, Beatriz ❤️</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .box {
+      max-width: 650px;
+      margin: auto;
+    }
+    button {
+      background: #1db954;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 30px;
+      border-radius: 6px;
+    }
+    .hidden {
+      display: none;
+    }
+    .music {
+      font-style: italic;
+      opacity: 0.85;
+      margin-top: 15px;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" id="step1">
+    <h1>Feliz aniversário, Beatriz 🎉</h1>
+    <p>
+      Algumas coisas não precisam de explicação.<br>
+      Só precisam ser vividas.
+    </p>
+    <button onclick="nextStep()">Continuar</button>
+  </div>
+
+  <div class="box hidden" id="step2">
+    <p class="music">“Eu que não amo você…” 🎶</p>
+    <p>
+      Mas amo cada momento ao seu lado,<br>
+      cada riso, cada conversa<br>
+      e tudo o que a gente constrói juntos.
+    </p>
+    <button onclick="finalStep()">Descobrir a surpresa</button>
+  </div>
+
+  <div class="box hidden" id="step3">
+    <img src="humberto.jpg" alt="Humberto Gessinger">
+
+    <h2>🎸 Engenheiros do Hawaii 🎸</h2>
+    <p>
+      <strong>31 de julho de 2026</strong>.<br><br>
+      Dois ingressos.<br>
+      Eu + você, Beatriz.<br><br>
+      Nossa história tocando ao vivo.
+    </p>
+  </div>
+
+  <script>
+    function nextStep() {
+      document.getElementById("step1").style.display = "none";
+      document.getElementById("step2").style.display = "block";
+    }
+
+    function finalStep() {
+      document.getElementById("step2").style.display = "none";
+      document.getElementById("step3").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
