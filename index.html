@@ -37,7 +37,6 @@
       background: #e63946;
       color: #fff;
       cursor: pointer;
-      transition: transform 0.2s;
     }
 
     button:hover {
@@ -57,16 +56,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Efeito simples de revelação */
-    .reveal {
-      animation: revealEffect 1s ease forwards;
-    }
-
-    @keyframes revealEffect {
-      0% { opacity: 0; transform: scale(0.5); }
-      100% { opacity: 1; transform: scale(1); }
-    }
   </style>
 </head>
 <body>
@@ -75,53 +64,54 @@
 
     <div class="step active" id="step1">
       <h1>Feliz aniversário, Beatriz 🎉❤️</h1>
-      <p>Algumas coisas não precisam de explicação.<br>Só precisam ser sentidas.</p>
+      <p>
+        Algumas coisas não precisam de explicação.<br>
+        Só precisam ser sentidas.
+      </p>
       <button onclick="nextStep(2)">Continuar</button>
     </div>
 
     <div class="step" id="step2">
-      <p>Amar você é fácil.<br>Difícil é explicar o quanto.</p>
+      <p>
+        Amar você é fácil.<br>
+        Difícil é explicar o quanto.
+      </p>
       <button onclick="nextStep(3)">Continuar</button>
     </div>
 
     <div class="step" id="step3">
-      <p>Cada momento ao seu lado vira memória boa.<br>Cada sorriso seu vira casa.</p>
+      <p>
+        Cada momento ao seu lado vira memória boa.<br>
+        Cada sorriso seu vira casa.
+      </p>
       <button onclick="nextStep(4)">Continuar</button>
     </div>
 
     <div class="step" id="step4">
-      <p style="font-size: 1.3em; font-weight: bold;">Você aceita viver um sonho comigo? 💫</p>
-      <button onclick="nextStep(5)">Sim!</button>
-    </div>
-
-    <div class="step" id="step5">
-      <h2 class="reveal">🎸 Engenheiros do Hawaii 🎸</h2>
-      <p class="reveal">
+      <h2>🎸 Engenheiros do Hawaii 🎸</h2>
+      <p>
         📅 <strong>31 de julho de 2026</strong><br><br>
         Dois ingressos.<br>
         Eu + você.<br>
         Nossa história tocando ao vivo.
       </p>
-      <p class="reveal">Te amo ❤️</p>
+      <p>Te amo ❤️</p>
     </div>
 
   </div>
 
   <script>
-    // Garantir que o DOM carregou antes de rodar o script
-    window.onload = function() {
-      function nextStep(step) {
-        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-        document.getElementById('step' + step).classList.add('active');
-      }
-
-      // Torna a função global para onclick funcionar
-      window.nextStep = nextStep;
-    };
+    function nextStep(step) {
+      document.querySelectorAll('.step').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.getElementById('step' + step).classList.add('active');
+    }
   </script>
 
 </body>
 </html>
+
 
 
 
