@@ -1,82 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Aniversário ❤️</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      color: white;
+      background: linear-gradient(135deg, #0e0e0e, #2b2b2b);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       text-align: center;
-      padding: 40px;
+      padding: 20px;
     }
-    .box {
-      background: rgba(0,0,0,0.25);
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 600px;
-      margin: auto;
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      border-radius: 20px;
+      padding: 40px 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
+
     button {
-      margin-top: 20px;
-      padding: 12px 25px;
+      margin-top: 25px;
+      padding: 15px 30px;
       font-size: 16px;
       border: none;
-      border-radius: 25px;
+      border-radius: 50px;
+      background: #e63946;
+      color: #fff;
       cursor: pointer;
-      background: white;
-      color: #ff4f7a;
-      font-weight: bold;
     }
-    .hidden { display: none; }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .step {
+      display: none;
+      animation: fade 0.8s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
-  <div class="box" id="step1">
-    <h1>Feliz aniversário, meu amor ❤️</h1>
-    <p>Preparei algo especial pra você…</p>
-    <button onclick="nextStep(1)">Continuar</button>
-  </div>
+  <div class="container">
 
-  <div class="box hidden" id="step2">
-    <p>Você é meu sorriso diário, meu abraço seguro e meu lugar favorito no mundo.</p>
-    <button onclick="nextStep(2)">Mais um pouquinho</button>
-  </div>
+    <div class="step active" id="step1">
+      <h1>Feliz aniversário, Beatriz 🎉❤️</h1>
+      <p>
+        Algumas coisas não precisam de explicação.<br>
+        Só precisam ser sentidas.
+      </p>
+      <button onclick="nextStep(2)">Continuar</button>
+    </div>
 
-  <div class="box hidden" id="step3">
-    <p>Eu te amo mais do que palavras conseguem explicar 💕</p>
-    <button onclick="nextStep(3)">Revelar surpresa</button>
-  </div>
+    <div class="step" id="step2">
+      <p>
+        Amar você é fácil.<br>
+        Difícil é explicar o quanto.
+      </p>
+      <button onclick="nextStep(3)">Continuar</button>
+    </div>
 
-  <div class="box hidden" id="step4">
-    <h2>🎸 Engenheiros do Hawaii 🎸</h2>
-    <p>📅 <strong>31 de julho de 2026</strong></p>
-    <p>Esse é o nosso presente ❤️</p>
+    <div class="step" id="step3">
+      <p>
+        Cada momento ao seu lado vira memória boa.<br>
+        Cada sorriso seu vira casa.
+      </p>
+      <button onclick="nextStep(4)">Continuar</button>
+    </div>
 
-    <h3>Contagem regressiva:</h3>
-    <p id="countdown"></p>
+    <div class="step" id="step4">
+      <h2>🎸 Engenheiros do Hawaii 🎸</h2>
+      <p>
+        📅 <strong>31 de julho de 2026</strong><br><br>
+        Dois ingressos.<br>
+        Eu + você.<br>
+        Nossa história tocando ao vivo.
+      </p>
+      <p>Te amo ❤️</p>
+    </div>
+
   </div>
 
   <script>
-    function nextStep(n) {
-      document.getElementById("step" + n).classList.add("hidden");
-      document.getElementById("step" + (n + 1)).classList.remove("hidden");
+    function nextStep(step) {
+      document.querySelectorAll('.step').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.getElementById('step' + step).classList.add('active');
     }
-
-    const eventDate = new Date("2026-07-31T00:00:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = eventDate - now;
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-      document.getElementById("countdown").innerHTML =
-        ${days} dias, ${hours} horas e ${minutes} minutos 💖;
-    }, 1000);
   </script>
 
 </body>
