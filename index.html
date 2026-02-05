@@ -2,87 +2,81 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Feliz Aniversário, Beatriz ❤️</title>
+  <title>Feliz Aniversário ❤️</title>
   <style>
     body {
-      background: #0e0e0e;
-      color: #ffffff;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
       text-align: center;
       padding: 40px;
     }
     .box {
-      max-width: 650px;
+      background: rgba(0,0,0,0.25);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
       margin: auto;
     }
     button {
-      background: #1db954;
-      color: #000;
-      border: none;
-      padding: 15px 30px;
+      margin-top: 20px;
+      padding: 12px 25px;
       font-size: 16px;
+      border: none;
+      border-radius: 25px;
       cursor: pointer;
-      margin-top: 30px;
-      border-radius: 6px;
+      background: white;
+      color: #ff4f7a;
+      font-weight: bold;
     }
-    .hidden {
-      display: none;
-    }
-    .music {
-      font-style: italic;
-      opacity: 0.85;
-      margin-top: 15px;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin: 20px 0;
-    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
 
   <div class="box" id="step1">
-    <h1>Feliz aniversário, Beatriz 🎉</h1>
-    <p>
-      Algumas coisas não precisam de explicação.<br>
-      Só precisam ser vividas.
-    </p>
-    <button onclick="nextStep()">Continuar</button>
+    <h1>Feliz aniversário, meu amor ❤️</h1>
+    <p>Preparei algo especial pra você…</p>
+    <button onclick="nextStep(1)">Continuar</button>
   </div>
 
   <div class="box hidden" id="step2">
-    <p class="music">“Eu que não amo você…” 🎶</p>
-    <p>
-      Mas amo cada momento ao seu lado,<br>
-      cada riso, cada conversa<br>
-      e tudo o que a gente constrói juntos.
-    </p>
-    <button onclick="finalStep()">Descobrir a surpresa</button>
+    <p>Você é meu sorriso diário, meu abraço seguro e meu lugar favorito no mundo.</p>
+    <button onclick="nextStep(2)">Mais um pouquinho</button>
   </div>
 
   <div class="box hidden" id="step3">
-    <img src="humberto.jpg" alt="Humberto Gessinger">
+    <p>Eu te amo mais do que palavras conseguem explicar 💕</p>
+    <button onclick="nextStep(3)">Revelar surpresa</button>
+  </div>
 
+  <div class="box hidden" id="step4">
     <h2>🎸 Engenheiros do Hawaii 🎸</h2>
-    <p>
-      <strong>31 de julho de 2026</strong>.<br><br>
-      Dois ingressos.<br>
-      Eu + você, Beatriz.<br><br>
-      Nossa história tocando ao vivo.
-    </p>
+    <p>📅 <strong>31 de julho de 2026</strong></p>
+    <p>Esse é o nosso presente ❤️</p>
+
+    <h3>Contagem regressiva:</h3>
+    <p id="countdown"></p>
   </div>
 
   <script>
-    function nextStep() {
-      document.getElementById("step1").style.display = "none";
-      document.getElementById("step2").style.display = "block";
+    function nextStep(n) {
+      document.getElementById("step" + n).classList.add("hidden");
+      document.getElementById("step" + (n + 1)).classList.remove("hidden");
     }
 
-    function finalStep() {
-      document.getElementById("step2").style.display = "none";
-      document.getElementById("step3").style.display = "block";
-    }
+    const eventDate = new Date("2026-07-31T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        ${days} dias, ${hours} horas e ${minutes} minutos 💖;
+    }, 1000);
   </script>
 
 </body>
