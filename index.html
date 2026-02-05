@@ -127,9 +127,6 @@
 
   </div>
 
-  <!-- Áudio da música -->
-  <audio id="song" src="bolero.mp3"></audio>
-
   <script>
     function nextStep(step) {
       document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
@@ -138,15 +135,7 @@
 
     function revealTickets() {
       nextStep(5); // Mostra a etapa dos ingressos
-
-      // Toca a música (requer interação do usuário)
-      const song = document.getElementById('song');
-      song.play().catch(() => {
-        console.log("Áudio bloqueado até interação do usuário.");
-      });
-
-      // Cria confetes
-      createConfetti(100);
+      createConfetti(100); // Gera confetes
     }
 
     function createConfetti(amount) {
