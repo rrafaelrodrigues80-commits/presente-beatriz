@@ -37,6 +37,7 @@
       background: #e63946;
       color: #fff;
       cursor: pointer;
+      margin: 5px;
     }
 
     button:hover {
@@ -87,7 +88,14 @@
       <button onclick="nextStep(4)">Continuar</button>
     </div>
 
+    <!-- Nova etapa: pergunta antes do show -->
     <div class="step" id="step4">
+      <p>💌 Aceita viver este sonho comigo?</p>
+      <button onclick="nextStep(5)">Sim ❤️</button>
+      <button onclick="noAnswer()">Não 😢</button>
+    </div>
+
+    <div class="step" id="step5">
       <h2>🎸 Engenheiros do Hawaii 🎸</h2>
       <p>
         📅 <strong>31 de julho de 2026</strong><br><br>
@@ -107,10 +115,15 @@
       });
       document.getElementById('step' + step).classList.add('active');
     }
+
+    function noAnswer() {
+      alert("Tudo bem 😅, mas espero que mude de ideia ❤️");
+    }
   </script>
 
 </body>
 </html>
+
 
 
 
